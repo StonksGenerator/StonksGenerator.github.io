@@ -1,26 +1,45 @@
 let canvas = document.getElementById('stonks-canvas')
 const context = canvas.getContext('2d');
+const option = {
+  width:400,
+  height:400
+}
 
 setCanvaProps(canvas)
 initCanvas(canvas)
 
 function setCanvaProps(canvas){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = option.width || window.innerWidth;
+  canvas.height = option.height || window.innerHeight;
 }
 
 async function initCanvas(){
+  drawStonksImage()
+}
+
+function drawStonksImage(functionDrawText){
+  const stonksType = document.getElementById('stonks-type').value
 
   base_image = new Image();
-  base_image.src = 'stonks.png';
-  base_image.onload = () => context.drawImage(base_image, 100, 100, 400, 400);
+  base_image.src = `./img/${stonksType}.png`;
+  base_image.onload = () => {
+    context.drawImage(base_image, 0, 0, 400, 400);
+    drawStonksText();
+  }
 }
 
 function drawStonksText(){
-  const input = document.getElementById('text-for-stonks')
-  console.log(input.value)
 
-  context.font = "39px Arial";
-  context.fillStyle ="white"
-  context.fillText(input.value, 250, 300);
+  const text = document.getElementById('text-for-stonks').value
+  const angle = document.getElementById('angle-for-stonks').value
+  console.log(text, angle)
+  
+  context.save();
+    context.font = "39px Arial";
+    context.fillStyle ="white"
+    context.translate(option.width/2, option.height/2)
+    context.rotate(-Math.PI*angle/180);
+    context.fillText(text, 0, 0);
+  context.restore()
+  
 }
