@@ -1,5 +1,7 @@
 let canvas = document.getElementById('stonks-canvas')
 const context = canvas.getContext('2d');
+let base_image = new Image();
+
 const option = {
   width:400,
   height:400
@@ -17,7 +19,7 @@ async function initCanvas(){
   drawStonksImage()
 }
 
-function drawStonksImage(functionDrawText){
+function drawStonksImage(){
   const stonksType = document.getElementById('stonks-type').value
 
   base_image = new Image();
@@ -29,7 +31,7 @@ function drawStonksImage(functionDrawText){
 }
 
 function drawStonksText(){
-
+  context.drawImage(base_image, 0, 0, 400, 400);
   const text = document.getElementById('text-for-stonks').value
   const angle = document.getElementById('angle-for-stonks').value
   console.log(text, angle)
@@ -42,4 +44,12 @@ function drawStonksText(){
     context.fillText(text, 0, 0);
   context.restore()
   
+}
+
+
+function downloadImage(){
+  var link = document.createElement('a');
+  link.download = 'filename.png';
+  link.href = canvas.toDataURL()
+  link.click();
 }

@@ -16,13 +16,13 @@
         <div>
           <label for="basic-url">Your stonks text:</label>
           <div class="input-group mb-3">
-            <input id="text-for-stonks" type="text" class="form-control" placeholder="Ultra stonks" id="basic-url" aria-describedby="basic-addon3">
+            <input oninput="drawStonksText()" id="text-for-stonks" type="text" class="form-control" placeholder="Ultra stonks" id="basic-url" aria-describedby="basic-addon3">
           </div>
         </div>
         <div>
             <label for="basic-url">Stonks angle</label>
             <div class="input-group mb-3">
-              <input id="angle-for-stonks" type="number" class="form-control" placeholder="0" aria-describedby="basic-addon2">
+              <input oninput="drawStonksText()" id="angle-for-stonks" type="number" class="form-control" placeholder="0" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <span class="input-group-text">°</span>
               </div>
@@ -37,13 +37,15 @@
               <option selected value="normal">Normal stonsks</option>
               <option value="confused">Confused stonsks</option>
               <option value="not">Not stonsks</option>
-              <option value="pride">Pride stonsks</option>
             </select>
           </div>
         </div>
-        <button onclick="drawStonksImage()" type="button" class="btn btn-warning">Generate image</button>
+        <button onclick="downloadImage()" type="button" class="btn btn-light">Download Image</button>
         <div class="developers">
-          Walter Dalla Torre Neto 
+          <label>Developer:</label>
+          <label>
+            Walter Dalla Torre Neto 
+          </label>
           <a href="https://github.com/Walter-Dalla" target="blank">
             <i class="fab fa-github-square"></i>
           </a>
